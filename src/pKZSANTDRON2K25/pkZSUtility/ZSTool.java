@@ -1,4 +1,4 @@
-package pKZSANTDRONSK25.ZSUtility;
+package pKZSANTDRON2K25.pkZSUtility;
 
 //Refactorización: Creación del paquete ZSUtility y la clase ZSTool
 public class ZSTool {

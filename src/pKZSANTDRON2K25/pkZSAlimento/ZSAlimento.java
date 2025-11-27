@@ -1,5 +1,7 @@
-package pKZSANTDRONSK25.pkZSAlimento;
+package pKZSANTDRON2K25.pkZSAlimento;
 
-public abstract class Alimento {
-
+public abstract class ZSAlimento {
+    public ZSAlimento(){
+        
+    }
 }

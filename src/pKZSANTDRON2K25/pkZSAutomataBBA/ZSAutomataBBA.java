@@ -1,4 +1,4 @@
-package pKZSANTDRONSK25.ZSAutomataBBA;
+package pKZSANTDRON2K25.pkZSAutomataBBA;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ZSAutomataBBA {
 
+    //Refactorización: Se cambió el tipo de los atributos para ZSAutomataBBA
     private List<Character> alfabeto;
     private List<String> estados;
     private HashMap<String, String> transiciones;
@@ -14,13 +15,13 @@ public class ZSAutomataBBA {
 
     public ZSAutomataBBA() {
 
-
+        
         alfabeto = new ArrayList<>();
         estados = new ArrayList<>();
         transiciones = new HashMap<>();
         estadosDeAceptacion = new ArrayList<>();
 
-        // Alfabeto
+        
         alfabeto.add('a');
         alfabeto.add('b');
         alfabeto.add('c');
@@ -49,7 +50,9 @@ public class ZSAutomataBBA {
         transiciones.put("q4,d", "q4");
     }
 
-    public boolean evaluar(String texto) {
+    //Refactorización: Se eliminó el método zsTransicion() y se anadio un parametro String para zsEvaluar
+
+    public boolean zsEvaluar(String texto) {
         String estadoActual = estadoInicial;
 
         for (int i = 0; i < texto.length(); i++) {

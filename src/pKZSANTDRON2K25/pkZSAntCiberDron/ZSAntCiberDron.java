@@ -30,51 +30,67 @@ public class ZSAntCiberDron implements IZSIA{
             }
     }
 
-    @Override
-    public Boolean zsBuscar(String zsTipoArsenal) {
+    
+@Override
+public Boolean zsBuscar(String zsTipoArsenal) {
+    StringBuilder zsAcumulador = new StringBuilder();
+    boolean zsEncabezadoMostrado = false;
+
+
     Boolean explotarBomba = true;
-
-    if (explotarBomba) {
-        System.out.println("COORDENADAS UCRANIANAS A DESTRUIR:");
-        String archivo = "ZunigaSebastian_procesado.csv";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-
-            String linea;
-
-            System.out.printf("%-20s %-20s %-20s\n",
-                    "Geoposicion", "Tipo Arsenal", "Accion(TRUE)");
-            System.out.println("--------------------------------------------------------------");
-
-            while ((linea = br.readLine()) != null) {
-
-                String[] columnas = linea.split("\\|");
-
-                if (columnas.length < 3) continue;
-
-                String geopos = columnas[0].trim();
-                String arsenal = columnas[1].trim();
-
-               
-                if ((geopos.equals("02") || geopos.equals("04"))
-                        && arsenal.equals(zsTipoArsenal)) {
-
-                    System.out.printf("%-20s %-20s %-20s\n",
-                            geopos, arsenal, "true");
-                }
-            }
-
-            System.out.println("\n[*] Extracción completada.\n");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return true;
-    } else {
+    if (!explotarBomba) {
         System.out.println("ERROR. La bomba no puede explotar en este momento.");
         return false;
     }
+
+    String archivo = "ZunigaSebastian_procesado.csv";
+
+    try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+
+        String linea;
+
+        // MOSTRAR ENCABEZADO SOLO UNA VEZ
+        if (!zsEncabezadoMostrado) {
+            System.out.println("COORDENADAS UCRANIANAS A DESTRUIR:");
+            System.out.printf("%-20s %-20s %-20s\n",
+                    "Geoposicion", "Tipo Arsenal", "Accion(TRUE)");
+            System.out.println("--------------------------------------------------------------");
+            zsEncabezadoMostrado = true;
+        }
+
+        while ((linea = br.readLine()) != null) {
+            if (linea.trim().isEmpty()) continue;
+
+            String[] columnas = linea.split("\\|");
+
+            if (columnas.length < 7) continue;
+
+            String geopos = columnas[0].trim().replace("Coord-", "").trim();
+            String arsenal = columnas[6].trim();
+
+            // VALIDAR si coincide con el tipo enviado como parámetro
+            if (!arsenal.equals(zsTipoArsenal)) continue;
+
+            // SOLO queremos 04 y 02 (y mostrar primero los 04)
+            if (geopos.equals("04") || geopos.equals("02")) {
+                zsAcumulador.append(
+                    String.format("%-20s %-20s %-20s\n",
+                            geopos, arsenal, "true")
+                );
+            }
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    // MOSTRAR ACUMULADO hasta ahora
+    System.out.print(zsAcumulador.toString());
+
+    System.out.println("\n[*] Extracción completada.\n");
+
+    return true;
 }
+
 
 }

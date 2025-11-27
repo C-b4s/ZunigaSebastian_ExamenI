@@ -1,5 +1,8 @@
 package pKZSANTDRON2K25.pkZSHormiga;
 
-public interface IZSHormiga {
+import pKZSANTDRON2K25.pkZSAlimento.ZSOmnivoro;
 
+public interface IZSHormiga {
+    Boolean zsComer(ZSOmnivoro alimento);
 }
+

@@ -1,5 +1,7 @@
-package pKZSANTDRONSK25.pkZSHormiga;
+package pKZSANTDRON2K25.pkZSHormiga;
 
-public class ZSHormiga {
-
+public abstract class ZSHormiga {
+    public ZSHormiga(){
+        
+    }
 }

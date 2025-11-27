@@ -1,10 +1,10 @@
-package pKZSANTDRONSK25;
+package pKZSANTDRON2K25;
 
 import java.io.*;
 import java.util.Scanner;
 
-import pKZSANTDRONSK25.ZSAutomataBBA.ZSAutomataBBA;
-import pKZSANTDRONSK25.ZSUtility.ZSTool;
+import pKZSANTDRON2K25.pkZSAntCiberDron.ZSAntCiberDron;
+import pKZSANTDRON2K25.pkZSUtility.ZSTool;
 
 public class ZSAppAntCiberDron {
     Scanner sc = new Scanner (System.in);
@@ -16,29 +16,26 @@ public class ZSAppAntCiberDron {
         System.out.println("   -    Cédula: 1727915942");
         zsLeerArchivo();
 
+        ZSAntCiberDron antCiberDron = new ZSAntCiberDron();
+        boolean bombaBBA = antCiberDron.zsCrearBombaBBA(sc);
 
-        ZSAutomataBBA automata = new ZSAutomataBBA();
-         System.out.println("\n[*] AUTÓMATA para DESTRUIR ARSENAL BELICO ================");
-         System.out.println("Coordenadas a destruir: 4 y 2\n");
-        System.out.println("Ingrese el tipo de arsenal para validar (escriba 'salir' para terminar):\n");
-
-        while (true) {
-            System.out.print("Arsenal belico: ");
-            String cadena = sc.nextLine().trim();
-
-            if (cadena.equalsIgnoreCase("salir")) {
-                System.out.println("\n[*] Finalizando validación...");
-                break;
-            }
-
-            boolean resultado = automata.zsEvaluar(cadena);
-
-            if (resultado) {
-                System.out.println("    Confirmado. Arsenal belico identificado exitosamentet\n");
-            } else {
-                System.out.println("     ERROR. El arsenal belico no ha sido identificado\n");
-            }
+        if (bombaBBA){
+            System.out.println("\nLa bomba BBA ha sido desarrollada satisfactoriamente");
+        }else{
+            System.out.println("\nLa bomba BBA no ha podido ser creada");
         }
+
+        boolean bomba = antCiberDron.zsBuscar("abbbbbbbb");
+        bomba = antCiberDron.zsBuscar("abbbb");
+
+        if (bomba){
+            System.out.println("\nOPERACION EXITOSA");
+        }else{
+            System.out.println("\nOPERACION FALLIDA");
+        }
+
+
+        
     }
     
     //Refactorización: Cambio en el nombre del método leerArchivo a zsLeerArchivo 

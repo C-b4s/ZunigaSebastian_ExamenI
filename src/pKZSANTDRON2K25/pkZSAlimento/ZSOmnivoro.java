@@ -1,5 +1,9 @@
-package pKZSANTDRONSK25.pkZSAlimento;
+package pKZSANTDRON2K25.pkZSAlimento;
 
-public class ZSOmnivoro {
+public class ZSOmnivoro extends ZSAlimento {
+    
+    public String toString() {
+        return "Alimento: Omnívoro";
+    }
 
 }
